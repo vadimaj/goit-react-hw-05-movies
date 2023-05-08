@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 50px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  background-color: #1a0000;
+}
+.navbar-link {
+  text-decoration: none;
+  font-style: normal;
+  font-size: 16px;
+  color: rgb(255, 55, 0);
+  font-weight: normal;
+  position: relative;
+  transition: color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navbar-link:hover {
+  color: rgb(255, 174, 0);
+}
+.navbar-link-active {
+  color: rgb(255, 174, 0);
+}
