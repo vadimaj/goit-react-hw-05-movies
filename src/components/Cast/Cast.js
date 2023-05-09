@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import FetchMovieCast from 'services/FetchMovieCast';
 import { IMAGES_BASE_URL } from '../../constants';
 import css from './Cast.module.css';
+import Loader from 'components/Loader';
+import castplaceholder from 'components/images/castplaceholder.jpg';
 
 const Status = {
   PENDING: 'pending',
@@ -31,7 +33,7 @@ const Cast = () => {
   }, [movieId]);
 
   if (status === 'pending') {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   if (status === 'rejected') {
     return (
@@ -48,13 +50,15 @@ const Cast = () => {
           const { name, profile_path, character, id } = actor;
           return (
             <div key={id}>
-              {profile_path && (
-                <img
-                  src={IMAGES_BASE_URL + profile_path}
-                  alt={name}
-                  className={css['cast-image']}
-                />
-              )}
+              <img
+                src={
+                  profile_path
+                    ? IMAGES_BASE_URL + profile_path
+                    : castplaceholder
+                }
+                alt={name}
+                className={css['cast-image']}
+              />
               <h3>{name}</h3>
               <h3>Character:</h3>
               <p>{character}</p>

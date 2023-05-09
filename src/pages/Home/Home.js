@@ -1,7 +1,7 @@
 import MovieList from 'components/MovieList/MovieList';
 import { useState, useEffect } from 'react';
-//import { Link } from 'react-router-dom';
 import FetchTrendingMovies from 'services/FetchTrendingMovies';
+import Loader from 'components/Loader';
 
 const Status = {
   PENDING: 'pending',
@@ -31,7 +31,7 @@ const Home = () => {
   }, []);
 
   if (status === 'pending') {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   if (status === 'rejected') {
     return (

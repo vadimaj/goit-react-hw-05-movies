@@ -4,18 +4,15 @@ import { useLocation } from 'react-router-dom';
 
 const MovieList = props => {
   const { movies } = props;
-  console.log(movies);
+
   const location = useLocation();
   return (
     <ul className="movies">
       {movies.map(movie => {
+        const { id, title, original_title } = movie;
         return (
-          <Link
-            to={`/movies/${movie.id}`}
-            state={{ from: location }}
-            key={movie.id}
-          >
-            <li>{movie.title}</li>
+          <Link to={`/movies/${id}`} state={{ from: location }} key={id}>
+            <li>{title ?? original_title}</li>
           </Link>
         );
       })}

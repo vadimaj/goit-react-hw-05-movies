@@ -3,6 +3,9 @@ import { useState, useEffect, useRef, Suspense } from 'react';
 import FetchMovieDetails from 'services/FetchMovieDetails';
 import { IMAGES_BASE_URL } from '../../constants';
 import css from './MovieDetails.module.css';
+import Loader from 'components/Loader';
+import movieplaceholder from 'components/images/movieplaceholder.jpg';
+
 const Status = {
   PENDING: 'pending',
   RESOLVED: 'resolved',
@@ -35,7 +38,7 @@ const MovieDetails = () => {
   }, [movieId]);
 
   if (status === 'pending') {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   if (status === 'rejected') {
     return (
@@ -54,7 +57,10 @@ const MovieDetails = () => {
           Go back
         </Link>
         <div className={css['movie-wrap']}>
-          <img src={IMAGES_BASE_URL + poster_path} alt={title} />
+          <img
+            src={poster_path ? IMAGES_BASE_URL + poster_path : movieplaceholder}
+            alt={title}
+          />
           <div className={css['movie-info']}>
             <h2>{title + ' (' + release_date.slice(0, 4) + ')'}</h2>
             <p>

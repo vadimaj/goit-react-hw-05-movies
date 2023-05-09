@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import FetchMovieReviews from 'services/FetchMovieReviews';
 import css from './Reviews.module.css';
+import Loader from 'components/Loader';
 
 const Status = {
   PENDING: 'pending',
@@ -30,7 +31,7 @@ const Reviews = () => {
   }, [movieId]);
 
   if (status === 'pending') {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   if (status === 'rejected') {
     return (
@@ -51,7 +52,7 @@ const Reviews = () => {
         {results.map(review => {
           const { author, content } = review;
           return (
-            <div className="review-item">
+            <div className="review-item" key={author}>
               <h3>
                 {'Author: '} {author}
               </h3>
